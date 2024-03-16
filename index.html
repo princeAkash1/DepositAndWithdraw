@@ -141,18 +141,23 @@ function getInputNumber(idName){
    return amountNumber;
 }
 
-function updateSpan(idName,addedNumber){
+function updateSpan(idName, addedNumber) {
     const current = document.getElementById(idName).innerText;
-    const currentStringToInt = parseFloat(current);
+    let currentStringToInt = parseFloat(current);
+
+    // Check if current value is a number
     if (isNaN(currentStringToInt)) {
         currentStringToInt = 0; // Set to 0 if not a number
     }
 
-
-    const total = currentStringToInt+addedNumber;
-    document.getElementById(idName).innerText = total;
-
-
+    const total = currentStringToInt + addedNumber;
+    
+    // Check if the updated balance is non-negative
+    if (total >= 0) {
+        document.getElementById(idName).innerText = total;
+    } else {
+        alert("Insufficient balance!"); // Alert the user if the balance becomes negative
+    }
 }
 
   </script>
